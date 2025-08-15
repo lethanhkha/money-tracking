@@ -1,0 +1,8 @@
+// Điền thông tin dự án của bạn (anon key là PUBLIC; nhớ bật RLS bên DB)
+export const CONFIG = {
+    SUPABASE_URL: "https://mxpxlvksrtcmpkkxzsfp.supabase.co",
+    SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14cHhsdmtzcnRjbXBra3h6c2ZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ3MDY5NzUsImV4cCI6MjA3MDI4Mjk3NX0.5WDeB6rv55f49fXLayhmrvppRX6Ms313EN_7uijHECg",
+    APP_NAME: "Tips Manager",
+    DEFAULT_LANG: "vi",
+    TIMEZONE: "Asia/Ho_Chi_Minh",
+};
