@@ -6,6 +6,7 @@
     <title>Money Tracking App</title>
     <link rel="icon" type="image/png" href="public/images/logo.png" />
     <link rel="stylesheet" href="public/styles/base.css" />
+    <script type="module" src="public/scripts/app.js"></script>
   </head>
   <body>
     <div class="container">
@@ -30,19 +31,19 @@
       <section class="summaryGrid">
         <div class="summaryCard">
           <p id="lblToday">Hôm nay</p>
-          <p id="sumToday" class="mt-1 text-xl font-semibold">0 VND</p>
+          <p id="sumToday">0 VND</p>
         </div>
         <div class="summaryCard">
           <p id="lblTomorrow">Ngày mai</p>
-          <p id="sumTomorrow" class="mt-1 text-xl font-semibold">0 VND</p>
+          <p id="sumTomorrow">0 VND</p>
         </div>
         <div class="summaryCard">
           <p id="lblThisWeek">Tuần này</p>
-          <p id="sumWeek" class="mt-1 text-xl font-semibold">0 VND</p>
+          <p id="sumWeek">0 VND</p>
         </div>
         <div class="summaryCard">
           <p id="lblThisMonth">Tháng này</p>
-          <p id="sumMonth" class="mt-1 text-xl font-semibold">0 VND</p>
+          <p id="sumMonth">0 VND</p>
         </div>
       </section>
 
@@ -75,28 +76,31 @@
               <option id="optAmountAsc" value="amountAsc">Số tiền ↑</option>
             </select>
           </div>
-          <!-- Bạn có thể đổi các nút này thành Export/Import khi cần -->
           <div class="action-item">
-            <button id="btnClearFilters" class="action-button focus-ring fade">Xoá lọc</button>
+            <button id="btnClearFilters" class="action-button focus-ring fade">
+              Xoá lọc
+            </button>
           </div>
         </div>
       </section>
 
       <!-- Select & delete bar -->
       <div class="select-delete">
-        <span class="lblSelectedCount" id="lblSelectedCount">0 mục đã chọn</span>
+        <span class="lblSelectedCount" id="lblSelectedCount"
+          >0 mục đã chọn</span
+        >
         <div class="select-delete-button-group">
           <button id="btnSelectAll" class="select-all-button focus-ring fade">
-            Chọn tất cả (trang hiện tại)
+            Chọn tất cả
           </button>
-          <button id="btnDeleteSelected" class="delete-selected-button focus-ring fade">
+          <button id="btnDeleteSelected" class="delete-button focus-ring fade">
             Xóa đã chọn
           </button>
         </div>
       </div>
 
       <!-- Entries -->
-      <section class="mt-4" id="entries"></section>
+      <section class="entries" id="entries"></section>
 
       <!-- Floating Add Button -->
       <button id="fab" title="Add Tip" class="fab focus-ring fade">
@@ -104,13 +108,16 @@
       </button>
     </div>
 
-    <!-- modal entry -->
+    <!-- Entry dialog -->
     <dialog id="entryDialog">
       <form method="dialog" id="entryForm">
         <div class="dlg-head">
           <h2 id="dialogTitle" class="dlg-title">Thêm tip</h2>
           <p class="dlg-sub">
-            Quy tắc ngày: <span id="logicDesc" style="font-weight: 600">Ghi cho ngày mai</span>
+            Quy tắc ngày:
+            <span id="logicDesc" style="font-weight: 600"
+              >Ghi cho ngày mai</span
+            >
           </p>
         </div>
 
@@ -119,7 +126,9 @@
 
           <!-- Số tiền -->
           <div class="field">
-            <label id="lblAmount" class="flabel" for="amount">Số tiền (VND)</label>
+            <label id="lblAmount" class="flabel" for="amount"
+              >Số tiền (VND)</label
+            >
             <div class="amount">
               <input
                 id="amount"
@@ -129,20 +138,85 @@
               />
             </div>
             <div class="quick-buttons">
-              <button type="button" data-quick="50000" class="quick focus-ring fade">+50k</button>
-              <button type="button" data-quick="100000" class="quick focus-ring fade">+100k</button>
-              <button type="button" data-quick="200000" class="quick focus-ring fade">+200k</button>
+              <button
+                type="button"
+                data-quick="5000"
+                class="quick focus-ring fade"
+              >
+                +5k
+              </button>
+              <button
+                type="button"
+                data-quick="10000"
+                class="quick focus-ring fade"
+              >
+                +10k
+              </button>
+              <button
+                type="button"
+                data-quick="20000"
+                class="quick focus-ring fade"
+              >
+                +20k
+              </button>
+              <button
+                type="button"
+                data-quick="50000"
+                class="quick focus-ring fade"
+              >
+                +50k
+              </button>
+              <button
+                type="button"
+                data-quick="100000"
+                class="quick focus-ring fade"
+              >
+                +100k
+              </button>
+              <button
+                type="button"
+                data-quick="200000"
+                class="quick focus-ring fade"
+              >
+                +200k
+              </button>
+              <button
+                type="button"
+                data-quick="-5000"
+                class="quick focus-ring fade"
+              >
+                -5k
+              </button>
+              <button
+                type="button"
+                data-quick="-10000"
+                class="quick focus-ring fade"
+              >
+                -10k
+              </button>
             </div>
           </div>
 
           <!-- Ngày nhập + ngày tính -->
           <div class="field">
-            <label id="lblInputDate" class="flabel" for="inputDate">Ngày nhập (hôm nay)</label>
-            <input id="inputDate" type="date" class="inputDate focus-ring fade" />
+            <label id="lblInputDate" class="flabel" for="inputDate"
+              >Ngày nhập (hôm nay)</label
+            >
+            <input
+              id="inputDate"
+              type="date"
+              class="inputDate focus-ring fade"
+            />
             <div class="record">
               <label class="pill">
-                <input id="recordTomorrow" type="checkbox" style="width: 16px; height: 16px" />
-                <span id="lblRecordTomorrow" style="font-size: 14px">Ghi cho ngày mai (mặc định)</span>
+                <input
+                  id="recordTomorrow"
+                  type="checkbox"
+                  style="width: 16px; height: 16px"
+                />
+                <span id="lblRecordTomorrow" style="font-size: 14px"
+                  >Ghi cho ngày mai (mặc định)</span
+                >
               </label>
               <div class="muted">
                 <span id="lblIntendedLabel">Ngày tính:</span>
@@ -151,425 +225,230 @@
             </div>
 
             <div class="field">
-              <label id="lblOverride" class="flabel" for="intendedDate">Chỉnh ngày tính (tuỳ chọn)</label>
-              <input id="intendedDate" type="date" class="intendedDate focus-ring fade" />
-              <p id="lblOverrideDesc" class="muted">Mặc định: ngày tính = ngày nhập + 1 khi bật "Ghi cho ngày mai".</p>
+              <label id="lblOverride" class="flabel" for="intendedDate"
+                >Chỉnh ngày tính (tuỳ chọn)</label
+              >
+              <input
+                id="intendedDate"
+                type="date"
+                class="intendedDate focus-ring fade"
+              />
+              <p id="lblOverrideDesc" class="muted">
+                Mặc định: ngày tính = ngày nhập + 1 khi bật "Ghi cho ngày mai".
+              </p>
             </div>
           </div>
 
-          <!-- Nguồn -->
+          <!-- Nguồn khách hàng (select từ Settings) -->
           <div class="field">
-            <label id="lblSource" class="flabel" for="source">Nguồn</label>
-            <select id="source" class="select-source focus-ring fade">
-              <option value="walk-in">Khách vãng lai</option>
-              <option value="regular">Khách quen</option>
-              <option value="online">Online</option>
-            </select>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <label class="flabel" for="sourceSelect">Nguồn khách hàng</label>
+              <!-- <span class="link" id="lnkManageSettings1">Quản lý danh mục</span> -->
+            </div>
+            <select
+              id="sourceSelect"
+              class="sourceSelect focus-ring fade"
+            ></select>
+          </div>
+
+          <!-- Nơi lưu trữ tiền (select từ Settings) -->
+          <div class="field">
+            <label class="flabel" for="storageSelect">Nơi lưu trữ tiền</label>
+            <select
+              id="storageSelect"
+              class="storageSelect focus-ring fade"
+            ></select>
+          </div>
+
+          <!-- Ngân hàng (select từ Settings, chỉ hiện khi storage = transfer) -->
+          <div class="field" id="bankWrap" style="display: none">
+            <label class="flabel" for="bankSelect">Ngân hàng</label>
+            <select id="bankSelect" class="focus-ring fade"></select>
           </div>
 
           <!-- Khách hàng -->
           <div class="field">
             <label id="lblClient" class="flabel" for="client">Khách hàng</label>
-            <input id="client" placeholder="Tên khách (tuỳ chọn)" class="client-input focus-ring fade" />
+            <input
+              id="client"
+              placeholder="Tên khách (tuỳ chọn)"
+              class="client-input focus-ring fade"
+            />
           </div>
 
           <!-- Ghi chú -->
           <div class="field">
             <label id="lblNote" class="flabel" for="note">Ghi chú</label>
-            <input id="note" placeholder="Khách / ca / ghi chú…" class="note-input focus-ring fade" />
+            <input
+              id="note"
+              placeholder="Khách / ca / ghi chú…"
+              class="note-input focus-ring fade"
+            />
           </div>
         </div>
 
         <div class="dlg-foot">
-          <button id="btnCancel" value="cancel" class="btnCancel focus-ring fade">Hủy</button>
-          <button id="btnSave" value="default" class="btnSave focus-ring fade">Lưu</button>
+          <button
+            id="btnCancel"
+            type="button"
+            class="btnCancel focus-ring fade"
+          >
+            Hủy
+          </button>
+          <button id="btnSave" value="default" class="btnSave focus-ring fade">
+            Lưu
+          </button>
         </div>
       </form>
     </dialog>
 
-    <script>
-      // ======= State & helpers =======
-      const STORAGE_KEY = 'entries_v1';
-      const entries = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      const selectedIds = new Set();
-      const sourceLabels = { 'walk-in': 'Khách vãng lai', regular: 'Khách quen', online: 'Online' };
+    <!-- Settings Hub (mở từ nút Cài đặt trên header) -->
+    <dialog id="settingsHubDialog">
+      <form method="dialog" id="settingsHubForm">
+        <div class="dlg-head">
+          <h2 class="dlg-title">Cài đặt</h2>
+        </div>
 
-      const els = {
-        fab: document.getElementById('fab'),
-        entries: document.getElementById('entries'),
-        dlg: document.getElementById('entryDialog'),
-        form: document.getElementById('entryForm'),
-        entryId: document.getElementById('entryId'),
-        amount: document.getElementById('amount'),
-        inputDate: document.getElementById('inputDate'),
-        recordTomorrow: document.getElementById('recordTomorrow'),
-        intendedDate: document.getElementById('intendedDate'),
-        intendedPreview: document.getElementById('intendedPreview'),
-        source: document.getElementById('source'),
-        client: document.getElementById('client'),
-        note: document.getElementById('note'),
+        <div class="dlg-body">
+          <button
+            type="button"
+            id="btnOpenCategoryManager"
+            class="setting-button focus-ring fade"
+            style="width: 100%"
+          >
+            Quản lý danh mục
+          </button>
+        </div>
 
-        // filters
-        search: document.getElementById('search'),
-        fromDate: document.getElementById('fromDate'),
-        toDate: document.getElementById('toDate'),
-        sort: document.getElementById('sort'),
-        btnClearFilters: document.getElementById('btnClearFilters'),
+        <div class="dlg-foot">
+          <button
+            id="btnCloseSettingsHub"
+            type="button"
+            class="btnCancel focus-ring fade"
+          >
+            Đóng
+          </button>
+        </div>
+      </form>
+    </dialog>
 
-        // bulk
-        lblSelectedCount: document.getElementById('lblSelectedCount'),
-        btnSelectAll: document.getElementById('btnSelectAll'),
-        btnDeleteSelected: document.getElementById('btnDeleteSelected'),
+    <!-- Category Management -->
+    <dialog id="categoryManagerDialog">
+      <form method="dialog" id="categoryManagerForm">
+        <div class="dlg-head">
+          <h2 class="dlg-title">Quản lý danh mục</h2>
+          <p class="dlg-sub">
+            Thêm, xoá, đặt mặc định cho Nguồn/Lưu trữ/Ngân hàng
+          </p>
+        </div>
 
-        // summary labels
-        lblToday: document.getElementById('lblToday'),
-        lblTomorrow: document.getElementById('lblTomorrow'),
-        lblThisWeek: document.getElementById('lblThisWeek'),
-        lblThisMonth: document.getElementById('lblThisMonth'),
-        sumToday: document.getElementById('sumToday'),
-        sumTomorrow: document.getElementById('sumTomorrow'),
-        sumWeek: document.getElementById('sumWeek'),
-        sumMonth: document.getElementById('sumMonth'),
-      };
-
-      const uid = () => Math.random().toString(36).slice(2) + Date.now().toString(36);
-      const pad2 = (n) => String(n).padStart(2, '0');
-      const toISO = (d) => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
-      const parseISO = (s) => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
-      const todayISO = () => toISO(new Date());
-      const addDaysISO = (iso, days) => { const d = iso ? parseISO(iso) : new Date(); d.setDate(d.getDate() + days); return toISO(d); };
-      const startOfWeekISO = (iso) => { const d = parseISO(iso); const day = d.getDay(); const diff = (day === 0 ? -6 : 1) - day; // Mon = 1
-        d.setDate(d.getDate() + diff); return toISO(d); };
-      const endOfWeekISO = (iso) => addDaysISO(startOfWeekISO(iso), 6);
-      const startOfMonthISO = (iso) => { const d = parseISO(iso); d.setDate(1); return toISO(d); };
-      const endOfMonthISO = (iso) => { const d = parseISO(iso); d.setMonth(d.getMonth() + 1, 0); return toISO(d); };
-
-      const fmtVND = (n) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 }).format(Math.round(n || 0));
-
-      function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); }
-
-      // ======= Filters =======
-      function normalize(s) { return (s || '').toString().toLowerCase(); }
-      function passFilters(e) {
-        const q = normalize(els.search.value);
-        const f = els.fromDate.value || null;
-        const t = els.toDate.value || null;
-        const intended = e.intendedDate || e.inputDate;
-        const hay = `${e.note || ''} ${e.client || ''} ${sourceLabels[e.source] || e.source || ''}`.toLowerCase();
-        if (q && !hay.includes(q)) return false;
-        if (f && intended < f) return false;
-        if (t && intended > t) return false;
-        return true;
-      }
-
-      function sortEntries(list) {
-        const how = els.sort.value || 'newest';
-        const byCreated = (a, b) => (b.createdAt || '').localeCompare(a.createdAt || '');
-        const byAmountDesc = (a, b) => (b.amountVND || 0) - (a.amountVND || 0) || byCreated(a, b);
-        const byAmountAsc = (a, b) => (a.amountVND || 0) - (b.amountVND || 0) || byCreated(a, b);
-        const byOldest = (a, b) => (a.createdAt || '').localeCompare(b.createdAt || '');
-        switch (how) {
-          case 'amountDesc': return list.sort(byAmountDesc);
-          case 'amountAsc': return list.sort(byAmountAsc);
-          case 'oldest': return list.sort(byOldest);
-          case 'newest':
-          default: return list.sort(byCreated);
-        }
-      }
-
-      // ======= Render 1 entry row =======
-      function renderEntryRow(e) {
-        const row = document.createElement('div');
-        row.className = 'entry-row';
-
-        const colDate = document.createElement('div');
-        colDate.className = 'entry-col-date';
-        colDate.innerHTML = `
-          <div class="entry-date-main">${(e.intendedDate || e.inputDate || '').split('-').reverse().join('/')}</div>
-          <div style="margin-top: 12px;">
-            <input type="checkbox" class="entry-checkbox focus-ring fade" data-id="${e.id}" ${selectedIds.has(e.id) ? 'checked' : ''}>
+        <div class="dlg-body settings-grid">
+          <!-- Nguồn khách hàng -->
+          <div class="card">
+            <h3>Nguồn khách hàng</h3>
+            <div class="sourcesList" id="sourcesList"></div>
+            <div class="inline-form">
+              <input
+                class="inpNewSource focus-ring fade"
+                id="inpNewSource"
+                placeholder="Thêm nguồn mới…"
+              />
+              <button
+                type="button"
+                id="btnAddSource"
+                class="btnAddSource focus-ring fade"
+              >
+                Thêm
+              </button>
+            </div>
+            <div class="inline-form">
+              <label class="muted" for="selDefaultSource">Mặc định</label>
+              <select class="selDefaultSource focus-ring fade" id="selDefaultSource"></select>
+            </div>
           </div>
-        `;
 
-        const colMain = document.createElement('div');
-        colMain.className = 'entry-col-main';
-        const metaLeft = `
-          <div class="entry-amount">${fmtVND(e.amountVND)}</div>
-          <div class="entry-note">${[e.note, e.client].filter(Boolean).join(' · ') || ''} ${e.source ? '· [' + (sourceLabels[e.source] || e.source) + ']' : ''}</div>
-        `;
-        const metaRight = `
-          <div class="entry-meta">
-            <span>Input: ${e.inputDate || ''}</span>
-            <span>Intended: ${e.intendedDate || e.inputDate || ''}</span>
-            <span>Saved: ${e.createdAt ? new Date(e.createdAt).toLocaleString('vi-VN') : ''}</span>
+          <!-- Nơi lưu trữ tiền -->
+          <div class="card">
+            <h3>Nơi lưu trữ tiền</h3>
+            <div id="storagesList"></div>
+            <div class="inline-form">
+              <input
+                class="inpNewStorageName focus-ring fade"
+                id="inpNewStorageName"
+                placeholder="Tên nơi lưu trữ (VD: Tiền mặt, Chuyển khoản…)"
+              />
+              <select class="selNewStorageKind focus-ring fade" id="selNewStorageKind">
+                <option value="cash">Tiền mặt</option>
+                <option value="transfer">Chuyển khoản (cần ngân hàng)</option>
+              </select>
+              <button
+                type="button"
+                id="btnAddStorage"
+                class="btnAddStorage focus-ring fade"
+              >
+                Thêm
+              </button>
+            </div>
+            <div class="inline-form">
+              <label
+                class="muted-sm"
+                for="selDefaultStorage"
+                style="min-width: 120px"
+                >Mặc định</label
+              >
+              <select class="selDefaultStorage focus-ring fade" id="selDefaultStorage"></select>
+            </div>
           </div>
-        `;
-        colMain.innerHTML = `<div style="display:flex;flex-direction:column;gap:6px;flex:1">${metaLeft}${metaRight}</div>`;
 
-        const colActions = document.createElement('div');
-        colActions.className = 'entry-col-actions';
+          <!-- Ngân hàng -->
+          <div class="card">
+            <h3>Ngân hàng</h3>
+            <div id="banksList"></div>
+            <div class="inline-form">
+              <input
+                class="inpNewBank focus-ring fade"
+                id="inpNewBank"
+                placeholder="Tên ngân hàng (VCB, TCB, ACB…)"
+              />
+              <button
+                type="button"
+                id="btnAddBank"
+                class="btnAddBank focus-ring fade"
+              >
+                Thêm
+              </button>
+            </div>
+            <div class="inline-form">
+              <label
+                class="muted-sm"
+                for="selDefaultBank"
+                style="min-width: 120px"
+                >Mặc định</label
+              >
+              <select class="selDefaultBank focus-ring fade" id="selDefaultBank"></select>
+            </div>
+            <p class="muted-sm">
+              * Chỉ áp dụng khi nơi lưu trữ là “Chuyển khoản”.
+            </p>
+          </div>
+        </div>
 
-        const btnEdit = document.createElement('button');
-        btnEdit.innerHTML = `✏️ Sửa`;
-        btnEdit.className = 'entry-btn entry-btn-edit';
-        btnEdit.onclick = () => openForEdit(e.id);
-
-        const btnDel = document.createElement('button');
-        btnDel.innerHTML = `🗑️ Xoá`;
-        btnDel.className = 'entry-btn entry-btn-del';
-        btnDel.onclick = () => {
-          const idx = entries.findIndex((x) => x.id === e.id);
-          if (idx >= 0) {
-            entries.splice(idx, 1);
-            selectedIds.delete(e.id);
-            save();
-            renderEverything();
-          }
-        };
-
-        colActions.appendChild(btnEdit);
-        colActions.appendChild(btnDel);
-
-        row.appendChild(colDate);
-        row.appendChild(colMain);
-        row.appendChild(colActions);
-        return row;
-      }
-
-      // ======= Render list (filtered + sorted) =======
-      function renderList() {
-        els.entries.innerHTML = '';
-        const visible = sortEntries(entries.filter(passFilters));
-        if (!visible.length) {
-          const empty = document.createElement('div');
-          empty.textContent = "Chưa có mục nào khớp bộ lọc. Nhấn '+ Thêm tip'.";
-          empty.style.cssText = 'text-align:center;color:#6b7280;margin-top:24px';
-          els.entries.appendChild(empty);
-        } else {
-          visible.forEach((e) => els.entries.appendChild(renderEntryRow(e)));
-        }
-        // update bulk bar count based on currently visible selection
-        updateSelectedCount();
-      }
-
-      // ======= Summaries =======
-      function renderSummaries() {
-        const today = todayISO();
-        const tomorrow = addDaysISO(today, 1);
-        const wStart = startOfWeekISO(today);
-        const wEnd = endOfWeekISO(today);
-        const mStart = startOfMonthISO(today);
-        const mEnd = endOfMonthISO(today);
-
-        const sum = { today: 0, tomorrow: 0, week: 0, month: 0 };
-        for (const e of entries) {
-          const d = e.intendedDate || e.inputDate;
-          const a = e.amountVND || 0;
-          if (d === today) sum.today += a;
-          if (d === tomorrow) sum.tomorrow += a;
-          if (d >= wStart && d <= wEnd) sum.week += a;
-          if (d >= mStart && d <= mEnd) sum.month += a;
-        }
-
-        // Pretty labels with dates
-        els.lblToday.textContent = `Hôm nay (${today.split('-').reverse().join('/')})`;
-        els.lblTomorrow.textContent = `Ngày mai (${tomorrow.split('-').reverse().join('/')})`;
-        const wRange = `${wStart.split('-').reverse().join('/')} – ${wEnd.split('-').reverse().join('/')}`;
-        els.lblThisWeek.textContent = `Tuần này (${wRange})`;
-        const [y, m] = today.split('-');
-        els.lblThisMonth.textContent = `Tháng này (${m}/${y})`;
-
-        els.sumToday.textContent = fmtVND(sum.today);
-        els.sumTomorrow.textContent = fmtVND(sum.tomorrow);
-        els.sumWeek.textContent = fmtVND(sum.week);
-        els.sumMonth.textContent = fmtVND(sum.month);
-      }
-
-      // ======= Modal logic =======
-      function setIntendedByRule() {
-        const base = els.inputDate.value || todayISO();
-        const auto = els.recordTomorrow.checked ? addDaysISO(base, 1) : base;
-        // only set if user hasn't manually overridden
-        if (!els.intendedDate.dataset.manual) {
-          els.intendedDate.value = auto;
-        }
-        els.intendedPreview.textContent = (els.intendedDate.value || auto).split('-').reverse().join('/');
-      }
-
-      function openForNew() {
-        els.form.reset();
-        els.entryId.value = '';
-        els.amount.value = '';
-        els.inputDate.value = todayISO();
-        els.recordTomorrow.checked = true; // mặc định
-        els.intendedDate.value = '';
-        delete els.intendedDate.dataset.manual;
-        els.source.value = 'walk-in';
-        els.client.value = '';
-        els.note.value = '';
-        setIntendedByRule();
-        els.dlg.showModal();
-        setTimeout(() => els.amount.focus(), 0);
-      }
-
-      function openForEdit(id) {
-        const e = entries.find((x) => x.id === id);
-        if (!e) return;
-        els.entryId.value = e.id;
-        els.amount.value = (e.amountVND || '').toLocaleString('vi-VN');
-        els.inputDate.value = e.inputDate || todayISO();
-        // Determine rule
-        const autoIfTomorrow = addDaysISO(els.inputDate.value, 1);
-        const intended = e.intendedDate || e.inputDate;
-        if (intended === autoIfTomorrow) {
-          els.recordTomorrow.checked = true;
-          delete els.intendedDate.dataset.manual;
-          els.intendedDate.value = '';
-        } else if (intended === els.inputDate.value) {
-          els.recordTomorrow.checked = false;
-          delete els.intendedDate.dataset.manual;
-          els.intendedDate.value = '';
-        } else {
-          els.recordTomorrow.checked = false; // user overrode
-          els.intendedDate.value = intended;
-          els.intendedDate.dataset.manual = '1';
-        }
-        els.source.value = e.source || 'walk-in';
-        els.client.value = e.client || '';
-        els.note.value = e.note || '';
-        setIntendedByRule();
-        els.dlg.showModal();
-        setTimeout(() => els.amount.focus(), 0);
-      }
-
-      function upsert(obj) {
-        const idx = entries.findIndex((x) => x.id === obj.id);
-        if (idx >= 0) entries[idx] = obj; else entries.push(obj);
-        save();
-        renderEverything();
-      }
-
-      // ======= Bulk selection =======
-      function updateSelectedCount() {
-        // Count only selected that are currently visible in DOM
-        const visibleIds = Array.from(document.querySelectorAll('.entry-checkbox')).map((c) => c.dataset.id);
-        const n = visibleIds.filter((id) => selectedIds.has(id)).length;
-        els.lblSelectedCount.textContent = `${n} mục đã chọn`;
-      }
-
-      function toggleSelectAll() {
-        const boxes = Array.from(document.querySelectorAll('.entry-checkbox'));
-        const allChecked = boxes.length && boxes.every((b) => b.checked);
-        boxes.forEach((b) => {
-          b.checked = !allChecked;
-          if (b.checked) selectedIds.add(b.dataset.id); else selectedIds.delete(b.dataset.id);
-        });
-        updateSelectedCount();
-      }
-
-      function deleteSelected() {
-        if (!selectedIds.size) { alert('Chưa chọn mục nào.'); return; }
-        if (!confirm('Xoá tất cả mục đã chọn?')) return;
-        for (let i = entries.length - 1; i >= 0; i--) {
-          if (selectedIds.has(entries[i].id)) entries.splice(i, 1);
-        }
-        selectedIds.clear();
-        save();
-        renderEverything();
-      }
-
-      // ======= Wiring =======
-      els.fab.addEventListener('click', openForNew);
-
-      // quick add buttons
-      document.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-quick]');
-        if (!btn) return;
-        const inc = Number(btn.getAttribute('data-quick')) || 0;
-        const current = Number(String(els.amount.value).replace(/\D/g, '')) || 0;
-        const next = current + inc;
-        els.amount.value = next.toLocaleString('vi-VN');
-        els.amount.dispatchEvent(new Event('input'));
-      });
-
-      // format amount typing
-      els.amount.addEventListener('input', () => {
-        const digits = String(els.amount.value).replace(/\D/g, '');
-        els.amount.value = digits ? Number(digits).toLocaleString('vi-VN') : '';
-      });
-
-      // intended date logic
-      els.inputDate.addEventListener('change', setIntendedByRule);
-      els.recordTomorrow.addEventListener('change', setIntendedByRule);
-      els.intendedDate.addEventListener('change', () => {
-        if (els.intendedDate.value) {
-          els.intendedDate.dataset.manual = '1';
-        } else {
-          delete els.intendedDate.dataset.manual;
-        }
-        setIntendedByRule();
-      });
-
-      // filters
-      [els.search, els.fromDate, els.toDate, els.sort].forEach((el) => el.addEventListener('input', renderList));
-      els.btnClearFilters.addEventListener('click', () => {
-        els.search.value = '';
-        els.fromDate.value = '';
-        els.toDate.value = '';
-        els.sort.value = 'newest';
-        renderList();
-      });
-
-      // bulk bar
-      els.btnSelectAll.addEventListener('click', toggleSelectAll);
-      els.btnDeleteSelected.addEventListener('click', deleteSelected);
-
-      // checkbox delegation
-      els.entries.addEventListener('change', (ev) => {
-        const box = ev.target.closest('.entry-checkbox');
-        if (!box) return;
-        if (box.checked) selectedIds.add(box.dataset.id); else selectedIds.delete(box.dataset.id);
-        updateSelectedCount();
-      });
-
-      // submit form
-      els.form.addEventListener('submit', (ev) => {
-        ev.preventDefault();
-        const id = els.entryId.value || uid();
-        const existing = entries.find((x) => x.id === id);
-        const amount = Number(String(els.amount.value).replace(/\D/g, '')) || 0;
-        if (!amount) {
-          alert('Vui lòng nhập số tiền.');
-          return;
-        }
-        const inputDate = els.inputDate.value || todayISO();
-        const intendedDate = (els.intendedDate.value || (els.recordTomorrow.checked ? addDaysISO(inputDate, 1) : inputDate));
-        const obj = {
-          id,
-          createdAt: existing?.createdAt || new Date().toISOString(),
-          inputDate,
-          intendedDate,
-          amountVND: amount,
-          source: els.source.value || 'walk-in',
-          client: els.client.value.trim(),
-          note: els.note.value.trim(),
-        };
-        upsert(obj);
-        els.dlg.close();
-      });
-
-      document.getElementById('btnCancel').addEventListener('click', (e) => {
-        e.preventDefault();
-        els.dlg.close();
-      });
-
-      function renderEverything() {
-        renderList();
-        renderSummaries();
-      }
-
-      // ======= First render =======
-      renderEverything();
-    </script>
+        <div class="settings-footer">
+          <button
+            id="btnCloseSettings"
+            type="button"
+            class="btnCancel focus-ring fade"
+          >
+            Đóng
+          </button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
