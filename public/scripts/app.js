@@ -1,6 +1,7 @@
 // public/scripts/app.js
 import { initSettingsUI } from "./settings-ui.js";
 import { initEntriesUI } from "./entries-ui.js";
+import { initTheme } from "./theme.js";
 
 function byId(id) {
   return document.getElementById(id);
@@ -75,3 +76,5 @@ export function initApp() {
 }
 
 initApp();
+initTheme();
+
