@@ -1,12 +1,3 @@
-/* =========================================================
-   base.refactored.css
-   Notes:
-   - Giữ nguyên logic & selectors, chỉ tổ chức lại cấu trúc.
-   - Quy chuẩn hoá token trong :root (màu, radius, shadow, timing).
-   - Tối thiểu hoá màu cứng; chuyển sang var(...).
-   - Hỗ trợ dark mode qua @media (prefers-color-scheme: dark).
-   ========================================================= */
-
 /* ========== Reset & Base Typography ========== */
 * {
   margin: 0;
@@ -34,7 +25,7 @@
   --danger: #ef4444;
   --danger-strong: #dc2626;
 
-  --ring: 0 0 0 3px rgba(59, 130, 246, 0.40);
+  --ring: 0 0 0 3px rgba(59, 130, 246, 0.4);
 
   /* Radii */
   --radius-md: 10px;
@@ -43,8 +34,8 @@
   --radius-2xl: 24px;
 
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.10);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.20);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.25);
 
   /* Spacing */
@@ -66,6 +57,16 @@
   --picker-size: 1.2em;
 }
 
+.light-theme {
+  --bg: #fafafa;
+  --bg-elev: #fafafa;
+  --bg-surface: #fefefe;
+
+  --text: #0b0b0c;
+  --muted: #6b7280;
+  --border: rgba(17, 24, 39, 0.08);
+}
+
 /* Light scheme override (tự động nếu hệ thống ở light) */
 @media (prefers-color-scheme: light) {
   :root {
@@ -82,7 +83,9 @@
 
 /* ========== Global Behaviors ========== */
 /* Chặn cuộn nền khi có dialog mở */
-html:has(dialog[open]) { overflow: hidden; }
+html:has(dialog[open]) {
+  overflow: hidden;
+}
 
 /* Focus ring util */
 .focus-ring:focus {
@@ -91,7 +94,9 @@ html:has(dialog[open]) { overflow: hidden; }
 }
 
 /* Transition util */
-.fade { transition: all 220ms ease; }
+.fade {
+  transition: all 220ms ease;
+}
 
 /* ========== Layout ========== */
 body {
@@ -137,7 +142,9 @@ header {
   color: var(--text);
 }
 
-.title-warp p { color: var(--muted); }
+.title-warp p {
+  color: var(--muted);
+}
 
 .head-action-warp {
   display: flex;
@@ -154,7 +161,9 @@ header {
   font-size: 0.85rem;
 }
 
-.head-action-button:hover { background-color: color-mix(in oklab, var(--bg-surface), white 7%); }
+.head-action-button:hover {
+  background-color: color-mix(in oklab, var(--bg-surface), white 7%);
+}
 
 /* ========== Summary ========== */
 .summaryGrid {
@@ -176,7 +185,9 @@ header {
   min-height: 110px;
 }
 
-.summaryCard p { margin: 0; }
+.summaryCard p {
+  margin: 0;
+}
 
 .summaryCard p:first-child {
   font-size: var(--fs-sm);
@@ -199,8 +210,15 @@ header {
   border-radius: var(--radius-lg);
 }
 
-.search-box { display: flex; flex-direction: column; font-size: small; }
-.lblSearch { margin-right: var(--space-2); color: var(--muted); }
+.search-box {
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+}
+.lblSearch {
+  margin-right: var(--space-2);
+  color: var(--muted);
+}
 
 .search-input {
   padding: var(--space-3);
@@ -212,7 +230,9 @@ header {
   font-size: medium;
   margin: var(--space-2) 0;
 }
-.search-input::placeholder { color: #999; }
+.search-input::placeholder {
+  color: #999;
+}
 
 .actions {
   display: flex;
@@ -253,8 +273,7 @@ header {
 /* Đặt icon tuỳ chỉnh cho date input */
 .action-item input[type="date"] {
   position: relative;
-  background:
-    url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm1-7h-1V2h-2v1H7V2H5v1H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H4V8h16v11zm0-13H4V5h16v1z"/></svg>')
+  background: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm1-7h-1V2h-2v1H7V2H5v1H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H4V8h16v11zm0-13H4V5h16v1z"/></svg>')
     no-repeat right 0.5rem center/var(--picker-size);
 }
 
@@ -267,7 +286,9 @@ header {
   font-size: 0.85rem;
 }
 
-.action-item button:hover { background-color: color-mix(in oklab, var(--bg-elev), white 7%); }
+.action-item button:hover {
+  background-color: color-mix(in oklab, var(--bg-elev), white 7%);
+}
 
 /* Floating Action Button */
 .fab {
@@ -281,7 +302,9 @@ header {
   padding: var(--space-4);
   box-shadow: var(--shadow-md);
 }
-.fab:hover { background-color: var(--primary-hover); }
+.fab:hover {
+  background-color: var(--primary-hover);
+}
 
 /* ========== Select & Delete bar ========== */
 .select-delete {
@@ -296,9 +319,14 @@ header {
   align-items: center;
 }
 
-.lblSelectedCount { font-size: medium; }
+.lblSelectedCount {
+  font-size: medium;
+}
 
-.select-delete-button-group { display: flex; gap: var(--space-2); }
+.select-delete-button-group {
+  display: flex;
+  gap: var(--space-2);
+}
 
 .select-all-button,
 .delete-button {
@@ -309,11 +337,19 @@ header {
   font-size: small;
 }
 
-.select-all-button { background-color: var(--bg-elev); }
-.select-all-button:hover { background-color: color-mix(in oklab, var(--bg-elev), white 7%); }
+.select-all-button {
+  background-color: var(--bg-elev);
+}
+.select-all-button:hover {
+  background-color: color-mix(in oklab, var(--bg-elev), white 7%);
+}
 
-.delete-button { background-color: var(--danger-strong); }
-.delete-button:hover { background-color: var(--danger); }
+.delete-button {
+  background-color: var(--danger-strong);
+}
+.delete-button:hover {
+  background-color: var(--danger);
+}
 
 /* ========== Dialogs (Entry, Settings) ========== */
 #entryDialog,
@@ -333,7 +369,9 @@ header {
   transform: translate(-50%, -50%);
 }
 
-#settingsHubDialog { max-width: 340px; }
+#settingsHubDialog {
+  max-width: 340px;
+}
 
 #entryDialog::backdrop,
 #settingsHubDialog::backdrop,
@@ -371,11 +409,22 @@ header {
   font-weight: 600;
   line-height: 1.3;
 }
-.dlg-sub { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
+.dlg-sub {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
 
 /* ========== Form Fields ========== */
-.field { display: flex; flex-direction: column; gap: var(--space-2); }
-.amount { gap: var(--space-2); align-items: stretch; }
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.amount {
+  gap: var(--space-2);
+  align-items: stretch;
+}
 
 .amount-prefix,
 .inputDate,
@@ -400,11 +449,22 @@ header {
   padding: var(--space-2) var(--space-4);
   color: var(--text);
 }
-.quick:hover { background-color: color-mix(in oklab, var(--bg-surface), white 7%); }
+.quick:hover {
+  background-color: color-mix(in oklab, var(--bg-surface), white 7%);
+}
 
-.record { display: flex; justify-content: space-between; }
-.muted { font-size: small; color: var(--muted); }
-.flabel { font-size: small; color: var(--muted); }
+.record {
+  display: flex;
+  justify-content: space-between;
+}
+.muted {
+  font-size: small;
+  color: var(--muted);
+}
+.flabel {
+  font-size: small;
+  color: var(--muted);
+}
 
 .btnCancel,
 .btnSave {
@@ -413,10 +473,18 @@ header {
   padding: var(--space-2) var(--space-4);
   color: #fff;
 }
-.btnCancel { background-color: var(--bg-surface); }
-.btnCancel:hover { background-color: color-mix(in oklab, var(--bg-surface), white 7%); }
-.btnSave { background-color: var(--primary); }
-.btnSave:hover { background-color: var(--primary-hover); }
+.btnCancel {
+  background-color: var(--bg-surface);
+}
+.btnCancel:hover {
+  background-color: color-mix(in oklab, var(--bg-surface), white 7%);
+}
+.btnSave {
+  background-color: var(--primary);
+}
+.btnSave:hover {
+  background-color: var(--primary-hover);
+}
 
 /* ========== Entries List ========== */
 .entries {
@@ -428,9 +496,16 @@ header {
   border-radius: var(--radius-lg);
 }
 
-.day-group { color: var(--text); }
-.day-header { display: flex; justify-content: space-between; }
-.day-subtotal { color: var(--muted); }
+.day-group {
+  color: var(--text);
+}
+.day-header {
+  display: flex;
+  justify-content: space-between;
+}
+.day-subtotal {
+  color: var(--muted);
+}
 
 .entry-row {
   display: flex;
@@ -474,7 +549,10 @@ header {
   justify-content: space-between;
 }
 
-.meta { display: flex; flex-direction: column; }
+.meta {
+  display: flex;
+  flex-direction: column;
+}
 
 .entry-amount {
   font-size: 1.1rem;
@@ -483,7 +561,9 @@ header {
   min-width: 110px;
 }
 
-.entry-line { display: flex; }
+.entry-line {
+  display: flex;
+}
 
 .entry-note {
   color: #a1a1aa;
@@ -527,14 +607,27 @@ header {
   justify-content: center;
 }
 
-.entry-btn-edit { background: #f4f4f5; color: #232326; }
-.entry-btn-edit:hover { background: #e4e4e7; }
+.entry-btn-edit {
+  background: #f4f4f5;
+  color: #232326;
+}
+.entry-btn-edit:hover {
+  background: #e4e4e7;
+}
 
-.entry-btn-del { background: var(--danger); color: #fff; }
-.entry-btn-del:hover { background: var(--danger-strong); }
+.entry-btn-del {
+  background: var(--danger);
+  color: #fff;
+}
+.entry-btn-del:hover {
+  background: var(--danger-strong);
+}
 
 /* ========== Settings & Cards ========== */
-.settings-grid { display: grid; gap: var(--space-4); }
+.settings-grid {
+  display: grid;
+  gap: var(--space-4);
+}
 
 .card {
   border: 1px solid var(--border);
@@ -542,10 +635,19 @@ header {
   padding: 12px;
   background-color: var(--bg-surface);
 }
-.card h3 { margin: 0 0 8px; font-size: 14px; }
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
 
-.list-row { display: flex; align-items: center; justify-content: space-between; }
-.list-row:last-child { border-bottom: none; }
+.list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list-row:last-child {
+  border-bottom: none;
+}
 
 .category-delete-button {
   background-color: var(--danger-strong);
@@ -589,7 +691,9 @@ header {
   color: #fff;
 }
 .btnAddSource:hover,
-.btnAddStorage:hover { background-color: var(--primary-hover); }
+.btnAddStorage:hover {
+  background-color: var(--primary-hover);
+}
 
 .selDefaultSource,
 .selDefaultStorage,
@@ -602,7 +706,10 @@ header {
   background-color: var(--bg);
 }
 
-.muted-sm { color: var(--muted); font-size: 12px; }
+.muted-sm {
+  color: var(--muted);
+  font-size: 12px;
+}
 
 .inline-form {
   display: flex;
@@ -611,9 +718,13 @@ header {
   gap: var(--space-4);
   margin-top: var(--space-1);
 }
-.selNewStorageKind { max-width: fit-content; }
+.selNewStorageKind {
+  max-width: fit-content;
+}
 .inline-form input,
-.inline-form select { flex: 1; }
+.inline-form select {
+  flex: 1;
+}
 
 .settings-footer {
   display: flex;
