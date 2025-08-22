@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Money Tracking App</title>
     <link rel="icon" type="image/png" href="public/images/logo.png" />
-    <link rel="stylesheet" href="public/styles/base.css" />
+    <link rel="stylesheet" href="public/styles/base.refactored.css" />
     <script type="module" src="public/scripts/app.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
@@ -369,7 +373,10 @@
             </div>
             <div class="inline-form">
               <label class="muted" for="selDefaultSource">Mặc định</label>
-              <select class="selDefaultSource focus-ring fade" id="selDefaultSource"></select>
+              <select
+                class="selDefaultSource focus-ring fade"
+                id="selDefaultSource"
+              ></select>
             </div>
           </div>
 
@@ -383,7 +390,10 @@
                 id="inpNewStorageName"
                 placeholder="Tên nơi lưu trữ (VD: Tiền mặt, Chuyển khoản…)"
               />
-              <select class="selNewStorageKind focus-ring fade" id="selNewStorageKind">
+              <select
+                class="selNewStorageKind focus-ring fade"
+                id="selNewStorageKind"
+              >
                 <option value="cash">Tiền mặt</option>
                 <option value="transfer">Chuyển khoản (cần ngân hàng)</option>
               </select>
@@ -402,7 +412,10 @@
                 style="min-width: 120px"
                 >Mặc định</label
               >
-              <select class="selDefaultStorage focus-ring fade" id="selDefaultStorage"></select>
+              <select
+                class="selDefaultStorage focus-ring fade"
+                id="selDefaultStorage"
+              ></select>
             </div>
           </div>
 
@@ -431,7 +444,10 @@
                 style="min-width: 120px"
                 >Mặc định</label
               >
-              <select class="selDefaultBank focus-ring fade" id="selDefaultBank"></select>
+              <select
+                class="selDefaultBank focus-ring fade"
+                id="selDefaultBank"
+              ></select>
             </div>
             <p class="muted-sm">
               * Chỉ áp dụng khi nơi lưu trữ là “Chuyển khoản”.
